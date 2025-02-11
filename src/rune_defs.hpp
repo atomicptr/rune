@@ -5,9 +5,9 @@
 #define __RUNE_TOSTRING(x) __RUNE_STRINGIFY(x)
 #define __RUNE_PRAGMA(x) _Pragma(#x)
 #ifdef _MSC_VER
-    #define __RUNE_WARN(message) __pragma(message("Warning: " #message))
+    #define __RUNE_WARN(msg) __RUNE_PRAGMA(message("Warning: " #msg))
 #else
-    #define __RUNE_WARN(message) __RUNE_PRAGMA(GCC warning #message)
+    #define __RUNE_WARN(msg) __RUNE_PRAGMA(GCC warning #msg)
 #endif
 
 // os defines
@@ -44,7 +44,7 @@
 #else
     #define RUNE_OS_UNKNOWN 1
     #define RUNE_OS_NAME "Unknown"
-__RUNE_WARN("rune: Unknown OS")
+    __RUNE_WARN("rune: Unknown OS")
 #endif
 
 // compiler defines
@@ -88,5 +88,5 @@ __RUNE_WARN("rune: Unknown OS")
     #define RUNE_COMPILER_VERSION_MAJOR 0
     #define RUNE_COMPILER_VERSION_MINOR 0
     #define RUNE_COMPILER_VERSION_PATCH 0
-__RUNE_WARN("rune: Unknown compiler detected. This compiler is not supported and some things might not work")
+    __RUNE_WARN("rune: Unknown compiler detected. This compiler is not supported and some things might not work")
 #endif
