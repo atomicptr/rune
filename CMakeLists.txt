@@ -16,3 +16,6 @@ enable_testing()
 
 add_executable(test_rune_os tests/test_rune_os.cpp)
 add_test(NAME test_rune_os COMMAND $<TARGET_FILE:test_rune_os>)
+
+add_executable(test_rune_paths tests/test_rune_paths.cpp)
+add_test(NAME test_rune_paths COMMAND $<TARGET_FILE:test_rune_paths>)
