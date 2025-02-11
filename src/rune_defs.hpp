@@ -37,7 +37,7 @@
     #else
         #error "rune: Unknown Apple platform"
     #endif
-#elif defined(__WIN32) || defined(__WIN64) || defined(__CYGWIN__)
+#elif defined(_WIN32) || defined(WIN32) || defined(__CYGWIN__)
     #define RUNE_OS_WINDOWS 1
     #define RUNE_OS_NAME "Windows"
     #define RUNE_OS_PLATFORM_DESKTOP 1
