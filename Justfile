@@ -1,5 +1,5 @@
 test: build
-    ctest --test-dir build --output-on-failure
+    ctest -C Debug --test-dir build --output-on-failure
 
 build:
     cmake -B build

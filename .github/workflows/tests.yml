@@ -27,4 +27,4 @@ jobs:
       - run: |
           cmake -B build
           cmake --build build
-          ctest --test-dir build
+          ctest -C Debug --test-dir build
