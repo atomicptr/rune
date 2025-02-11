@@ -92,7 +92,7 @@ namespace rune::os {
             return pretty_name.value();
         }
         #elif RUNE_OS_WINDOWS
-        auto win_version = win_version_info();
+        auto win_version = internal::win_version_info();
         if (win_version.has_value() && win_version->szCSDVersion[0] != '\0') {
             return win_version->szCSDVersion;
         }
@@ -109,7 +109,7 @@ namespace rune::os {
             return version.value();
         }
         #elif RUNE_OS_WINDOWS
-        auto win_version = win_version_info();
+        auto win_version = internal::win_version_info();
         if (win_version.has_value() && win_version->szCSDVersion[0] != '\0') {
             return std::to_string(win_version->dwMajorVersion) + "." + std::to_string(win_version->dwMinorVersion) + "." + std::to_string(win_version->dwBuildNumber);
         }
