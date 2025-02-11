@@ -3,6 +3,12 @@
 // utils
 #define __RUNE_STRINGIFY(x) #x
 #define __RUNE_TOSTRING(x) __RUNE_STRINGIFY(x)
+#define __RUNE_PRAGMA(x) _Pragma(#x)
+#ifdef _MSC_VER
+    #define __RUNE_WARN(message) __pragma(message("Warning: " #message))
+#else
+    #define __RUNE_WARN(message) __RUNE_PRAGMA(GCC warning #message)
+#endif
 
 // os defines
 #if defined(__ANDROID__)
@@ -38,7 +44,7 @@
 #else
     #define RUNE_OS_UNKNOWN 1
     #define RUNE_OS_NAME "Unknown"
-    #warning "rune: Unknown OS"
+__RUNE_WARN("rune: Unknown OS")
 #endif
 
 // compiler defines
@@ -55,14 +61,16 @@
 #elif (defined(__GNUC__) || defined(__GNUG__)) && !defined(__clang__)
     #define RUNE_COMPILER_GCC 1
     #define RUNE_COMPILER_NAME "gcc"
-    #define RUNE_COMPILER_VERSION __RUNE_TOSTRING(__GNUC__) "." __RUNE_TOSTRING(__GNUC_MINOR__) "." __RUNE_TOSTRING(__GNUC_PATCHLEVEL__)
+    #define RUNE_COMPILER_VERSION \
+        __RUNE_TOSTRING(__GNUC__) "." __RUNE_TOSTRING(__GNUC_MINOR__) "." __RUNE_TOSTRING(__GNUC_PATCHLEVEL__)
     #define RUNE_COMPILER_VERSION_MAJOR __GNUC__
     #define RUNE_COMPILER_VERSION_MINOR __GNUC_MINOR__
     #define RUNE_COMPILER_VERSION_PATCH __GNUC_PATCHLEVEL__
 #elif defined(__clang__)
     #define RUNE_COMPILER_CLANG 1
     #define RUNE_COMPILER_NAME "clang"
-    #define RUNE_COMPILER_VERSION __RUNE_TOSTRING(__clang_major__) "." __RUNE_TOSTRING(__clang_minor__) "." __RUNE_TOSTRING(__clang_patchlevel__)
+    #define RUNE_COMPILER_VERSION \
+        __RUNE_TOSTRING(__clang_major__) "." __RUNE_TOSTRING(__clang_minor__) "." __RUNE_TOSTRING(__clang_patchlevel__)
     #define RUNE_COMPILER_VERSION_MAJOR __clang_major__
     #define RUNE_COMPILER_VERSION_MINOR __clang_minor__
     #define RUNE_COMPILER_VERSION_PATCH __clang_patchlevel__
@@ -80,5 +88,5 @@
     #define RUNE_COMPILER_VERSION_MAJOR 0
     #define RUNE_COMPILER_VERSION_MINOR 0
     #define RUNE_COMPILER_VERSION_PATCH 0
-    #warning "rune: Unknown compiler detected. This compiler is not supported and some things might not work"
+__RUNE_WARN("rune: Unknown compiler detected. This compiler is not supported and some things might not work")
 #endif
