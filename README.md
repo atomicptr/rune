@@ -110,7 +110,36 @@ int main() {
 
 ### Cross platform path library (home dir, config dir, etc.)
 
-Coming soon...
+```cpp
+#include <iostream>
+#include <fstream>
+
+#include <rune/rune_paths.hpp>
+
+int main() {
+    auto home = rune::paths::home_dir();
+
+    std::cout << "User Home Dir: " << home << std::endl;
+
+    auto config_dir = rune::paths::config_dir("my-app"); // creates a "my-app" dir in the base config dir if doesnt exist
+    auto config_file_path = config_dir / "config.json"; // assuming: { "name": "Test" }
+    auto config_file = std::ifstream {config_file_path};
+
+    assert(config_file.is_open());
+
+    auto config_data = std::string {};
+
+    config_file >> config_data;
+
+    auto root = Json::Value {};
+    auto reader = Json::Reader {};
+    reader.parse(config_data, root);
+
+    std::cout << root["name"] << std::endl; // should return "Test"
+
+    return 0;
+}
+```
 
 ## License
 
