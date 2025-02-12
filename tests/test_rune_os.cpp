@@ -7,7 +7,7 @@
 int main() {
     auto os = getenv("TEST_OS");
 
-    auto os_str = std::string{os == nullptr ? RUNE_OS_NAME : os};
+    auto os_str = std::string {os == nullptr ? RUNE_OS_NAME : os};
 
     expect_equals(os_str, RUNE_OS_NAME);
 

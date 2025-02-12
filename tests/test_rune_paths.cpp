@@ -5,10 +5,20 @@
 #include "rune_paths.hpp"
 
 int main() {
-    auto home = rune::paths::home_dir();
+    auto dirs = {
+        rune::paths::home_dir(),
+        rune::paths::cache_base_dir(),
+        rune::paths::cache_dir("rune_test"),
+        rune::paths::config_base_dir(),
+        rune::paths::config_dir("rune_test"),
+        rune::paths::data_base_dir(),
+        rune::paths::data_dir("rune_test"),
+    };
 
-    expect_true(home.has_value());
-    expect_true(std::filesystem::exists(home.value()));
+    for (auto dir : dirs) {
+        expect_true(dir.has_value());
+        expect_true(std::filesystem::exists(dir.value()));
+    }
 
     return 0;
 }

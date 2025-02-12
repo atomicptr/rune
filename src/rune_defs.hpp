@@ -1,3 +1,9 @@
+/**
+ * rune: A collection of C++23 header files for handling various cross platform related tasks
+ *
+ * Repository: https://github.com/atomicptr/rune
+ * License:    MIT
+ */
 #pragma once
 
 // utils
