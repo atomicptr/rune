@@ -1,6 +1,6 @@
 # rune
 
-A collection of C++23 header files for handling various cross platform related tasks
+C++23 library for handling various cross platform tasks
 
 ## Features
 
